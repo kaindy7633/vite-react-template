@@ -90,8 +90,8 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <LoginForm
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          title={intl.formatMessage({ id: 'pages.layouts.userLayout.projectTitle' })}
+          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.subTitle' })}
           initialValues={{
             autoLogin: true,
           }}

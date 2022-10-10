@@ -3,20 +3,13 @@ import { useIntl } from '@umijs/max';
 
 const Footer: React.FC = () => {
   const intl = useIntl();
-  const defaultMessage = intl.formatMessage({
+  const companyName = intl.formatMessage({
     id: 'app.copyright.produced',
   });
 
   const currentYear = new Date().getFullYear();
 
-  return (
-    <DefaultFooter
-      style={{
-        background: 'none',
-      }}
-      copyright={`${currentYear} ${defaultMessage}`}
-    />
-  );
+  return <DefaultFooter copyright={`${currentYear} ${companyName}`} />;
 };
 
 export default Footer;
