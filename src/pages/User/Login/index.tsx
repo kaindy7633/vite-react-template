@@ -140,7 +140,7 @@ const Login: React.FC = () => {
 
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/logo.svg" />}
+          logo={<img alt="logo" src="/logo.svg" className="relative top-1" />}
           title={intl.formatMessage({ id: 'pages.layouts.userLayout.projectTitle' })}
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.subTitle' })}
           initialValues={{
@@ -167,7 +167,7 @@ const Login: React.FC = () => {
                 name="username"
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined className={styles.prefixIcon} />,
+                  prefix: <UserOutlined className="mr-1" />,
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.username.placeholder',
@@ -189,7 +189,7 @@ const Login: React.FC = () => {
                 name="password"
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined className={styles.prefixIcon} />,
+                  prefix: <LockOutlined className="mr-1" />,
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.password.placeholder',
@@ -212,11 +212,11 @@ const Login: React.FC = () => {
 
           {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
           {type === 'mobile' && (
-            <>
+            <div className="mt-2">
               <ProFormText
                 fieldProps={{
                   size: 'large',
-                  prefix: <MobileOutlined className={styles.prefixIcon} />,
+                  prefix: <MobileOutlined className="mr-1" />,
                 }}
                 name="mobile"
                 placeholder={intl.formatMessage({
@@ -247,7 +247,7 @@ const Login: React.FC = () => {
               <ProFormCaptcha
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined className={styles.prefixIcon} />,
+                  prefix: <LockOutlined className="mr-1" />,
                 }}
                 captchaProps={{
                   size: 'large',
@@ -290,7 +290,7 @@ const Login: React.FC = () => {
                   message.success('获取验证码成功！验证码为：1234');
                 }}
               />
-            </>
+            </div>
           )}
           <div
             style={{
