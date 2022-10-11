@@ -130,4 +130,14 @@ export default defineConfig({
       projectName: 'swagger',
     },
   ],
+  /**
+   * @name postcss
+   * @description tailwindcss 配置
+   */
+  extraPostCSSPlugins: [
+    require('postcss-import'),
+    require('tailwindcss')({ config: './tailwind.config.js' }),
+    require('postcss-nested'), // or require('postcss-nesting')
+    require('autoprefixer'),
+  ],
 });
