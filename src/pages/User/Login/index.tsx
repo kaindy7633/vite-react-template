@@ -20,6 +20,8 @@ import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import styles from './index.less';
 
+import { isGlobalization, isTripartiteLogin } from '@/constants/global_constants';
+
 const LoginMessage: React.FC<{
   content: string;
 }> = ({ content }) => {
@@ -82,11 +84,30 @@ const Login: React.FC = () => {
   };
   const { status, type: loginType } = userLoginState;
 
+  /**
+   * @TODO 根据配置决定是否启用三方登录
+   */
+  const _actions = isTripartiteLogin
+    ? [
+        <FormattedMessage
+          key="loginWith"
+          id="pages.login.loginWith"
+          defaultMessage="其他登录方式"
+        />,
+        <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
+        <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
+        <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
+      ]
+    : [];
+
   return (
     <div className={styles.container}>
-      <div className={styles.lang} data-lang>
-        {SelectLang && <SelectLang />}
-      </div>
+      {isGlobalization && (
+        <div className={styles.lang} data-lang>
+          {SelectLang && <SelectLang />}
+        </div>
+      )}
+
       <div className={styles.content}>
         <LoginForm
           logo={<img alt="logo" src="/logo.svg" />}
@@ -95,16 +116,7 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          actions={[
-            <FormattedMessage
-              key="loginWith"
-              id="pages.login.loginWith"
-              defaultMessage="其他登录方式"
-            />,
-            <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
-            <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
-            <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
-          ]}
+          actions={_actions}
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);
           }}

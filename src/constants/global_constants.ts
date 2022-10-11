@@ -6,7 +6,15 @@
 export const GLOBAL_COMPANY_NAME = '北京信睿';
 
 // 该项目名称设置
-export const PROJECT_TITLE = '资源管理系统';
+export const PROJECT_TITLE = '项目名称示例';
 
 // 设置项目副标题
 export const PROJECT_SUB_TITLE = ' ';
+
+// 是否启动多语言选择（国际化）,默认不启用
+export const isGlobalization = false;
+
+// 是否支持其他方式登录
+// 默认支持账号密码登录，手机登录
+// 手机登录可通过配置开关进行配置
+export const isTripartiteLogin = false;

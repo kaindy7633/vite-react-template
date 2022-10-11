@@ -40,6 +40,35 @@ export default defineConfig({
     // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
     // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
     'root-entry-name': 'variable',
+    // 全局主色
+    'primary-color': '#1890ff',
+    // 链接色
+    'link-color': '#1890ff',
+    // 成功色
+    'success-color': '#52c41a',
+    // 警告色
+    'warning-color': '#faad14',
+    // 错误色
+    'error-color': '#f5222d',
+    // 主字号
+    'font-size-base': '14px',
+    // 标题色
+    'heading-color': 'rgba(0, 0, 0, 0.85)',
+    // 主文本色
+    'text-color': 'rgba(0, 0, 0, 0.65)',
+    // 次文本色
+    'text-color-secondary': 'rgba(0, 0, 0, 0.45)',
+    // 失效色
+    'disabled-color': 'rgba(0, 0, 0, 0.25)',
+    // 组件/浮层圆角
+    'border-radius-base': '4px',
+    // 控制器圆角设置，一般是 input
+    'control-border-radius': '4px',
+    // 边框色
+    'border-color-base': '#d9d9d9',
+    // 浮层阴影
+    'box-shadow-base':
+      '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
   },
   /**
    * @name moment 的国际化配置
@@ -96,7 +125,10 @@ export default defineConfig({
    * @description 内置了 babel import 插件
    * @doc https://umijs.org/docs/max/antd#antd
    */
-  antd: {},
+  antd: {
+    dark: true, // 开启暗色主题
+    compact: true, // 开启紧凑主题
+  },
   /**
    * @name 网络请求配置
    * @description 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
