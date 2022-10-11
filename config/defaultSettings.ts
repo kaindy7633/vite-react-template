@@ -8,16 +8,15 @@ const Settings: LayoutSettings & {
   logo?: string;
 } = {
   navTheme: 'light',
-  colorPrimary: '#1890ff', // 拂晓蓝
-  layout: 'mix',
+  colorPrimary: '#1890ff',
+  layout: 'top',
   contentWidth: 'Fluid',
-  fixedHeader: false,
+  fixedHeader: true,
   fixSiderbar: true,
-  colorWeak: false,
-  title: 'Ant Design Pro',
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-  iconfontUrl: '',
+  splitMenus: false,
+  siderMenuType: 'sub',
 };
 
 export default Settings;
