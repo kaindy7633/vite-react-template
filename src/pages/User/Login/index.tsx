@@ -40,7 +40,7 @@ const LoginMessage: React.FC<{
 const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
-  const { initialState, refresh, setInitialState } = useModel('@@initialState');
+  const { initialState, setInitialState } = useModel('@@initialState');
 
   const intl = useIntl();
 
@@ -65,12 +65,10 @@ const Login: React.FC = () => {
         });
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
-        await refresh();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
         return;
       }
-      console.log(msg);
       // 如果失败去设置用户错误信息
       setUserLoginState(msg);
     } catch (error) {
@@ -137,10 +135,9 @@ const Login: React.FC = () => {
           {SelectLang && <SelectLang />}
         </div>
       )}
-
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/logo.svg" className="relative top-1" />}
+          logo={<img alt="logo" src="/logo.svg" />}
           title={intl.formatMessage({ id: 'pages.layouts.userLayout.projectTitle' })}
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.subTitle' })}
           initialValues={{
