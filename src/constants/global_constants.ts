@@ -18,3 +18,6 @@ export const isGlobalization = false;
 // 默认支持账号密码登录，手机登录
 // 手机登录可通过配置开关进行配置
 export const isTripartiteLogin = false;
+
+// 是否启用手机登录
+export const isPhoneLogin = false;

@@ -20,7 +20,7 @@ import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import styles from './index.less';
 
-import { isGlobalization, isTripartiteLogin } from '@/constants/global_constants';
+import { isGlobalization, isTripartiteLogin, isPhoneLogin } from '@/constants/global_constants';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -100,6 +100,36 @@ const Login: React.FC = () => {
       ]
     : [];
 
+  /**
+   * @TODO 根据配置决定是否启用手机登录
+   */
+  const tabItems = isPhoneLogin
+    ? [
+        {
+          key: 'account',
+          label: intl.formatMessage({
+            id: 'pages.login.accountLogin.tab',
+            defaultMessage: '账户密码登录',
+          }),
+        },
+        {
+          key: 'mobile',
+          label: intl.formatMessage({
+            id: 'pages.login.phoneLogin.tab',
+            defaultMessage: '手机号登录',
+          }),
+        },
+      ]
+    : [
+        {
+          key: 'account',
+          label: intl.formatMessage({
+            id: 'pages.login.accountLogin.tab',
+            defaultMessage: '账户密码登录',
+          }),
+        },
+      ];
+
   return (
     <div className={styles.container}>
       {isGlobalization && (
@@ -121,27 +151,7 @@ const Login: React.FC = () => {
             await handleSubmit(values as API.LoginParams);
           }}
         >
-          <Tabs
-            activeKey={type}
-            onChange={setType}
-            centered
-            items={[
-              {
-                key: 'account',
-                label: intl.formatMessage({
-                  id: 'pages.login.accountLogin.tab',
-                  defaultMessage: '账户密码登录',
-                }),
-              },
-              {
-                key: 'mobile',
-                label: intl.formatMessage({
-                  id: 'pages.login.phoneLogin.tab',
-                  defaultMessage: '手机号登录',
-                }),
-              },
-            ]}
-          />
+          <Tabs activeKey={type} onChange={setType} items={tabItems} />
 
           {status === 'error' && loginType === 'account' && (
             <LoginMessage
@@ -152,7 +162,7 @@ const Login: React.FC = () => {
             />
           )}
           {type === 'account' && (
-            <>
+            <div className="mt-2">
               <ProFormText
                 name="username"
                 fieldProps={{
@@ -197,7 +207,7 @@ const Login: React.FC = () => {
                   },
                 ]}
               />
-            </>
+            </div>
           )}
 
           {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
