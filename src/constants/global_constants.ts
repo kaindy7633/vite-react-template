@@ -21,3 +21,6 @@ export const isTripartiteLogin = false;
 
 // 是否启用手机登录
 export const isPhoneLogin = false;
+
+// 是否启用页头搜索功能
+export const isPageSearch = false;
