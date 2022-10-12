@@ -69,6 +69,7 @@ ol {
   inset-block-start: unset;
 }
 
+// 调整菜单样式
 .ant-pro-base-menu .ant-pro-base-menu-item-title {
   justify-content: center;
   .ant-pro-base-menu-item-icon {
@@ -86,5 +87,25 @@ ol {
     margin-left: 5px !important;
     font-size: 14px;
     line-height: 13px;
+  }
+}
+
+// 调整 message 组件样式
+.ant-message-notice-content {
+  .ant-message-custom-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// 调整 button loading 时指示器的样式
+.ant-btn-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span.ant-btn-loading-icon {
+    position: relative;
+    top: -3px;
   }
 }

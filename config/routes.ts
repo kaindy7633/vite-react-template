@@ -23,14 +23,13 @@ export default [
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'smile',
+    icon: 'HomeOutlined',
     component: './Welcome',
   },
   {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
-    access: 'canAdmin',
     routes: [
       {
         path: '/admin',
