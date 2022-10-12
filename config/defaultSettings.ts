@@ -1,4 +1,5 @@
 import { Settings as LayoutSettings } from '@ant-design/pro-components';
+import { PROJECT_TITLE } from '../src/constants/global_constants';
 
 /**
  * @name
@@ -14,9 +15,10 @@ const Settings: LayoutSettings & {
   fixedHeader: true,
   fixSiderbar: true,
   pwa: false,
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  logo: 'logo.svg',
   splitMenus: false,
   siderMenuType: 'sub',
+  title: PROJECT_TITLE,
 };
 
 export default Settings;

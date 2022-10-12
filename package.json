@@ -1,6 +1,6 @@
 {
   "name": "xinrui-frontend-template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "信睿前端工程模板, 基于Ant Design",
   "scripts": {
