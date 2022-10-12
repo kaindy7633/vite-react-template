@@ -23,7 +23,7 @@ export default [
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'HomeOutlined',
+    icon: 'icon-home',
     component: './Welcome',
   },
   {
