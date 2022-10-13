@@ -26,4 +26,4 @@ export const isPhoneLogin = false;
 export const isPageSearch = false;
 
 // iconfont URL 配置
-export const ICON_FONT_URL = '//at.alicdn.com/t/c/font_3701640_cls2c0rxjx9.js';
+export const ICON_FONT_URL = '/iconfont/font_3701640_cls2c0rxjx9.js';

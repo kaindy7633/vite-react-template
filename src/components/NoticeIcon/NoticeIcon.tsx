@@ -1,9 +1,9 @@
-import { BellOutlined } from '@ant-design/icons';
 import { Badge, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import React from 'react';
 import HeaderDropdown from '../HeaderDropdown';
+import IconFont from '../IconFont';
 import styles from './index.less';
 import type { NoticeIconTabProps } from './NoticeList';
 import NoticeList from './NoticeList';
@@ -91,7 +91,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   });
   const noticeButtonClass = classNames(className, styles.noticeButton);
   const notificationBox = getNotificationBox();
-  const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />;
+  const NoticeBellIcon = bell || <IconFont type="icon-notice-message" />;
   const trigger = (
     <span className={classNames(noticeButtonClass, { opened: visible })}>
       <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
@@ -106,7 +106,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   return (
     <HeaderDropdown
       placement="bottomRight"
-      overlay={notificationBox}
+      overlay={<span>AAAAA....</span>}
       overlayClassName={styles.popover}
       trigger={['click']}
       visible={visible}

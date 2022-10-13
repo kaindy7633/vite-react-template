@@ -47,10 +47,10 @@ const GlobalHeaderRight: React.FC = () => {
           ]}
         />
       )}
-      <a href="#" target="_blank" rel="noreferrer" className="text-gray-500" title="帮助文档">
+      <span className="mr-3 text-gray-500" title="帮助文档">
         <IconFont type="icon-help" className="cursor-pointer" />
-      </a>
-      <NoticeIcon />
+      </span>
+      <NoticeIcon count={1} />
       <Avatar />
       {isGlobalization && <SelectLang className={styles.action} />}
     </Space>
