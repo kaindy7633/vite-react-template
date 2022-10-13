@@ -45,7 +45,6 @@ const GlobalHeaderRight: React.FC = () => {
           ]}
         />
       )}
-
       <Avatar />
       {isGlobalization && <SelectLang className={styles.action} />}
     </Space>

@@ -24,3 +24,6 @@ export const isPhoneLogin = false;
 
 // 是否启用页头搜索功能
 export const isPageSearch = false;
+
+// iconfont URL 配置
+export const ICON_FONT_URL = '//at.alicdn.com/t/c/font_3701640_zsraxoieob7.js';
