@@ -9,12 +9,8 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCaptcha,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { LoginForm, ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
+
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
@@ -46,12 +42,14 @@ const Login: React.FC = () => {
 
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
+    console.log('userInfo', userInfo);
     if (userInfo) {
       await setInitialState((s) => ({
-        ...s,
         currentUser: userInfo,
+        ...s,
       }));
     }
+    console.log('initialState', initialState);
   };
 
   const handleSubmit = async (values: API.LoginParams) => {

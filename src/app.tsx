@@ -107,7 +107,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
               disableUrlParams
               enableDarkTheme
               settings={initialState?.settings}
-              onSettingChange={(settings) => {
+              onSettingChange={(settings: any) => {
                 setInitialState((preInitialState) => ({
                   ...preInitialState,
                   settings,
