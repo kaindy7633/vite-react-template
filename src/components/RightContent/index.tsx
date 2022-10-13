@@ -5,6 +5,8 @@ import HeaderSearch from '../HeaderSearch';
 import Avatar from './AvatarDropdown';
 import styles from './index.less';
 import { isGlobalization, isPageSearch } from '@/constants/global_constants';
+import NoticeIcon from '../NoticeIcon/NoticeIcon';
+import IconFont from '../IconFont';
 
 export type SiderTheme = 'light' | 'dark';
 
@@ -45,6 +47,10 @@ const GlobalHeaderRight: React.FC = () => {
           ]}
         />
       )}
+      <a href="#" target="_blank" rel="noreferrer" className="text-gray-500" title="帮助文档">
+        <IconFont type="icon-help" className="cursor-pointer" />
+      </a>
+      <NoticeIcon />
       <Avatar />
       {isGlobalization && <SelectLang className={styles.action} />}
     </Space>

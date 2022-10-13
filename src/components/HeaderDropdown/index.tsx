@@ -12,6 +12,7 @@ export type HeaderDropdownProps = {
 
 const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ overlayClassName: cls, ...restProps }) => (
   <Dropdown
+    arrow
     overlayClassName={classNames(styles.container, cls)}
     getPopupContainer={(target) => target.parentElement || document.body}
     {...restProps}
