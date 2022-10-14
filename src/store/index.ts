@@ -9,15 +9,36 @@
  * 参考文章：https://juejin.cn/post/7134633741774749710
  */
 import create from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
 
-type TStoreProps = {
+type TTestStoreProps = {
   votes: number;
   addVotes: () => void;
   subtractVotes: () => void;
 };
 
+type TTokenStoreProps = {
+  token: string;
+  setToken: () => void;
+};
+
+export const useTokenStore = create<TTokenStoreProps>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        token: '',
+        setToken: () => set((state) => ({ token: '1234' })),
+      }),
+      {
+        name: 'food-storage', // unique name
+        getStorage: () => sessionStorage, // (optional) by default, 'localStorage' is used
+      }
+    )
+  )
+);
+
 // 定义 Store，并导出
-export const useStore = create<TStoreProps>((set) => ({
+export const useStore = create<TTestStoreProps>((set) => ({
   votes: 0,
   addVotes: () => set((state) => ({ votes: state.votes + 1 })),
   subtractVotes: () => set((state) => ({ votes: state.votes - 1 })),
