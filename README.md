@@ -1,57 +1,23 @@
-# Ant Design Pro
+# vite-react-template
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+> 基于vite创建的React Typescript工程模版
 
-## Environment Prepare
+## 简介
 
-Install `node_modules`:
+这是一个基于 `vite` 创建的 `React Typescript` 工程模版项目，项目包含eslint、prettier、tailwind等各项配置，环境变量配置支持开发、数据Mock、测试和生产
 
-```bash
-npm install
-```
+## 安装
 
-or
+使用官方推荐，使用 `pnpm` 安装依赖
 
 ```bash
-yarn
+pnpm install
 ```
 
-## Provided Scripts
+## 状态管理
 
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
+该模版采用 `zustand` 作为全局状态管理框架，它具有体积小，无模版代码，无需 `Provider` 等优点，具体请参考官方：<https://github.com/pmndrs/zustand>
 
-Scripts provided in `package.json`. It's safe to modify or add additional script:
+## 配置
 
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+## 开发
