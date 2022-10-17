@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import vitePluginImp from 'vite-plugin-imp';
 import { viteMockServe } from 'vite-plugin-mock';
 import react from '@vitejs/plugin-react';
+// 动态主题切换工具
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
@@ -36,7 +37,7 @@ export default defineConfig(({ command, mode }) => {
           javascriptEnabled: true,
           // 如需定制 antd 主题，请取消以下内容注释 https://ant.design/docs/react/customize-theme
           // modifyVars: {
-          //   hack: `true; @import "./src/theme.less";`,
+          //   'border-radius-base': '4px',
           // },
         },
       },

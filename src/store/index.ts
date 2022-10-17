@@ -22,6 +22,11 @@ type TTokenStoreProps = {
   setToken: () => void;
 };
 
+type TThemeStoreProps = {
+  prefix: string;
+  setPrefix: (_prefix: string) => void;
+};
+
 export const useTokenStore = create<TTokenStoreProps>()(
   devtools(
     persist(
@@ -43,3 +48,20 @@ export const useStore = create<TTestStoreProps>((set) => ({
   addVotes: () => set((state) => ({ votes: state.votes + 1 })),
   subtractVotes: () => set((state) => ({ votes: state.votes - 1 })),
 }));
+
+/**
+ * @TODO 定义切换主题变量
+ */
+export const useThemeStore = create<TThemeStoreProps>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        prefix: 'default',
+        setPrefix: (_prefix) => set(() => ({ prefix: _prefix })),
+      }),
+      {
+        name: 'food-storage', // unique name
+      }
+    )
+  )
+);

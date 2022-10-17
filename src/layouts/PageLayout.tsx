@@ -1,25 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
 
 const PageLayout: React.FC = () => {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/warehouse">Warehouse</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
-      <hr />
-      <Outlet />
-    </div>
+    <Layout>
+      <Header className=" text-white">Header</Header>
+      <Content>
+        <Outlet />
+      </Content>
+      <Footer>我是页脚</Footer>
+    </Layout>
   );
 };
 
