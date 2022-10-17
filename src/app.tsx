@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider prefixCls={prefix}>
-      <div className={`App ${prefix} h-full`}>
+      <div className={`App ${prefix} h-[100vh]`}>
         <RouteElement />
       </div>
     </ConfigProvider>
