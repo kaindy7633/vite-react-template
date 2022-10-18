@@ -1,13 +1,9 @@
 import React from 'react';
-import { useRoutes } from 'react-router-dom';
+// import { useRoutes } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import routes from '@/routes';
+import { RouterGurad, routes } from '@/routes';
+import Loading from '@/pages/Loading';
 import { useThemeStore } from './store';
-
-function RouteElement() {
-  const element = useRoutes(routes);
-  return element;
-}
 
 const App: React.FC = () => {
   // 当前默认主题
@@ -15,9 +11,9 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider prefixCls={prefix}>
-      <div className={`App ${prefix} h-[100vh]`}>
-        <RouteElement />
-      </div>
+      <React.Suspense fallback={<Loading />}>
+        <div className={`App ${prefix} h-[100vh]`}>{RouterGurad(routes)}</div>
+      </React.Suspense>
     </ConfigProvider>
   );
 };

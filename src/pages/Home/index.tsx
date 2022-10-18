@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { Button } from 'antd';
 
-const Home: React.FC = () => {
+type THomeProps = {};
+
+const Home: React.FC<THomeProps> = () => {
+  const navigation = useNavigate();
+
   return (
     <div className="bg-white">
       <p>主题配置测试....</p>
@@ -11,6 +16,13 @@ const Home: React.FC = () => {
       <p className="mb-10">
         滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....
       </p>
+
+      <p>
+        <Button type="default" onClick={() => navigation('/warehouse')}>
+          跳转到warehouse
+        </Button>
+      </p>
+
       {/* <p className="mb-10">
         滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....
       </p>
