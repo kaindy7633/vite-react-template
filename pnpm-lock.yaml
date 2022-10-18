@@ -12,6 +12,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.1.0
   antd: ^4.23.5
   autoprefixer: ^10.4.12
+  classnames: ^2.3.2
   eslint: ^8.25.0
   eslint-config-prettier: ^8.5.0
   eslint-config-react-app: ^7.0.1
@@ -35,6 +36,7 @@ specifiers:
 dependencies:
   '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
   antd: 4.23.5_biqbaboplfbrettd7655fr4n2y
+  classnames: 2.3.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router: 6.4.2_react@18.2.0

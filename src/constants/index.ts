@@ -1,4 +1,10 @@
 /**
+ * @TODO 全局常量配置
+ */
+
+export const APP_TITLE = '易检测-资源管理';
+
+/**
  * @TODO Code定义
  */
 export const codeMessage: Record<number, string> = {
