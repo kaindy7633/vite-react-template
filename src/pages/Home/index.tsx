@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from 'antd';
+import BlockContainer from '@/components/BlockContainer';
 
 type THomeProps = {};
 
@@ -8,7 +9,7 @@ const Home: React.FC<THomeProps> = () => {
   const navigation = useNavigate();
 
   return (
-    <div className="bg-white">
+    <BlockContainer>
       <p>主题配置测试....</p>
       <Button type="primary" size="large">
         我是Button
@@ -95,7 +96,7 @@ const Home: React.FC<THomeProps> = () => {
       <p className="mb-10">
         滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....滚动条配置测试....
       </p> */}
-    </div>
+    </BlockContainer>
   );
 };
 
