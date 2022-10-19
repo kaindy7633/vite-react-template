@@ -30,6 +30,8 @@ const lazyPaths = [
   '/src/layouts/AuthLayout.tsx',
   '/src/layouts/PageLayout.tsx',
   '/src/pages/Home/index.tsx',
+  '/src/pages/Purchase/One',
+  '/src/pages/Purchase/Two',
   '/src/pages/Warehouse/index.tsx',
   '/src/pages/404.tsx',
   '/src/pages/Loading.tsx',

@@ -1,31 +1,61 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Menu, type MenuProps } from 'antd';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
+import IconFont from '@/components/IconFont';
 
 const AppMenu: React.FC<MenuProps> = () => {
+  const navigate = useNavigate();
+
   return (
     <Menu
       mode="inline"
-      defaultSelectedKeys={['1']}
+      defaultSelectedKeys={['home']}
       items={[
         {
-          key: '1',
-          icon: <UserOutlined />,
-          label: 'nav 1',
+          key: 'home',
+          icon: <IconFont type="icon-home" size={18} />,
+          label: '首页',
+          onClick: () => navigate('/'),
         },
         {
-          key: '2',
-          icon: <VideoCameraOutlined />,
-          label: 'nav 2',
+          key: 'purchase',
+          icon: <IconFont type="icon-purchase" size={21} />,
+          label: '采购管理',
+          children: [
+            {
+              key: 'purchase-one',
+              label: '采购管理-选项一',
+              onClick: () => navigate('/purchase/one'),
+            },
+            {
+              key: 'purchase-two',
+              label: '采购管理-选项二',
+              onClick: () => navigate('/purchase/two'),
+            },
+          ],
         },
         {
-          key: '3',
-          icon: <UploadOutlined />,
-          label: 'nav 3',
+          key: 'warehouse',
+          icon: <IconFont type="icon-warehouse" size={19} />,
+          label: '仓库管理',
+          children: [
+            {
+              key: 'standard-product',
+              label: '标准品管理',
+              onClick: () => navigate('/warehouse/standard-product'),
+            },
+            {
+              key: 'reagent-consumables',
+              label: '试剂耗材管理',
+              onClick: () => navigate('/warehouse/reagent-consumables'),
+            },
+          ],
+        },
+        {
+          key: 'usercenter',
+          icon: <IconFont type="icon-usercenter" size={20} />,
+          label: '用户中心',
+          onClick: () => navigate('/usercenter'),
         },
       ]}
     />

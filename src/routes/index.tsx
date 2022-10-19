@@ -12,7 +12,13 @@ import { APP_TITLE } from '@/constants';
 
 const PageLayout = lazy(() => import('@/layouts/PageLayout'));
 const Home = lazy(() => import('@/pages/Home'));
-const Warehouse = lazy(() => import('@/pages/Warehouse'));
+const PurchaseOne = lazy(() => import('@/pages/Purchase/One'));
+const PurchaseTwo = lazy(() => import('@/pages/Purchase/Two'));
+const StandardProduct = lazy(() => import('@/pages/Warehouse/StandardProduct'));
+const ReagentConsumables = lazy(
+  () => import('@/pages/Warehouse/ReagentConsumables')
+);
+
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
 const Singin = lazy(() => import('@/pages/Auth/Singin'));
 const NotFound = lazy(() => import('@/pages/404'));
@@ -40,9 +46,42 @@ export const routes: CustomRouteObject[] = [
         title: '首页',
       },
       {
-        path: '/warehouse',
-        element: <Warehouse />,
+        path: '',
+        title: '采购管理',
+        children: [
+          {
+            path: '/purchase/one',
+            element: <PurchaseOne />,
+            title: '采购管理 - 选项一',
+          },
+          {
+            path: '/purchase/two',
+            element: <PurchaseTwo />,
+            title: '采购管理 - 选项二',
+          },
+        ],
+      },
+      {
+        path: '',
         title: '仓库管理',
+        children: [
+          {
+            path: '/warehouse/standard-product',
+            element: <StandardProduct />,
+            title: '标准品管理',
+          },
+          {
+            path: '/warehouse/reagent-consumables',
+            element: <ReagentConsumables />,
+            title: '试剂耗材管理',
+          },
+        ],
+      },
+      // 未匹配上的路由 404
+      {
+        path: '/*',
+        element: <NotFound />,
+        title: '未知页面',
       },
     ],
   },
@@ -58,15 +97,14 @@ export const routes: CustomRouteObject[] = [
       },
     ],
   },
-  // 未匹配上的路由 404
-  {
-    path: '/*',
-    element: <NotFound />,
-    title: '未知页面',
-  },
 ];
 
-//递归查询对应的路由
+/**
+ * @description 递归查询对应的路由
+ * @param path
+ * @param routes
+ * @returns
+ */
 export function searchRouteDetail(
   path: string,
   routes: CustomRouteObject[]
@@ -80,7 +118,13 @@ export function searchRouteDetail(
   return null;
 }
 
-//全局路由守卫
+/**
+ * @description 全局路由守卫
+ * @param location
+ * @param navigate
+ * @param routes
+ * @returns
+ */
 function guard(
   location: Location,
   navigate: NavigateFunction,

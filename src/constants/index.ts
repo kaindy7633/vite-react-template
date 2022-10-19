@@ -5,7 +5,7 @@
 export const APP_TITLE = '易检测-资源管理';
 
 export const ICON_FONT_SCRIPTURL =
-  '//at.alicdn.com/t/c/font_3701640_pjo78dz7e4h.js';
+  '//at.alicdn.com/t/c/font_3701640_pcinl3ll0vr.js';
 
 /**
  * @TODO Code定义
