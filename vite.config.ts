@@ -5,6 +5,36 @@ import react from '@vitejs/plugin-react';
 // 动态主题切换工具
 import { resolve } from 'path';
 
+/**
+ * @description 目前 Vite 在开发时启动慢的问题暂未解决，待后续优化
+ * @param paths
+ * @returns
+ */
+
+export const PrefetchLazyPathsPlugin = (paths: string[] = []) => {
+  return {
+    name: 'prefetch-lazy-paths-plugin',
+    async transformIndexHtml(html: string) {
+      if (!paths.length) return html;
+      let prefetchStr: string = '';
+      paths.forEach((item) => {
+        prefetchStr += `<link rel="prefetch" href="${item}" as="script" />`;
+      });
+      let newHtml = html.replace('</head>', `${prefetchStr}</head>`);
+      return newHtml;
+    },
+  };
+};
+
+const lazyPaths = [
+  '/src/layouts/AuthLayout.tsx',
+  '/src/layouts/PageLayout.tsx',
+  '/src/pages/Home/index.tsx',
+  '/src/pages/Warehouse/index.tsx',
+  '/src/pages/404.tsx',
+  '/src/pages/Loading.tsx',
+];
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 根据当前工作目录中的 `mode` 加载 .env 文件
@@ -30,6 +60,7 @@ export default defineConfig(({ command, mode }) => {
         ],
       }),
       viteMockServe({ mockPath: './mock' }),
+      PrefetchLazyPathsPlugin(lazyPaths),
     ],
     css: {
       preprocessorOptions: {

@@ -1,5 +1,7 @@
 import { codeMessage } from '@/constants/index';
 
+declare module 'PrefetchLazyPathsPlugin';
+
 export interface ComponentModule {
   default: React.ComponentType;
 }
