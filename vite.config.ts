@@ -32,7 +32,8 @@ const lazyPaths = [
   '/src/pages/Home/index.tsx',
   '/src/pages/Purchase/One',
   '/src/pages/Purchase/Two',
-  '/src/pages/Warehouse/index.tsx',
+  '/src/pages/Warehouse/ReagentConsumables/index.tsx',
+  '/src/pages/Warehouse/StandardProduct/index.tsx',
   '/src/pages/404.tsx',
   '/src/pages/Loading.tsx',
 ];

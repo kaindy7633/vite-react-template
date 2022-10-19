@@ -18,6 +18,7 @@ const StandardProduct = lazy(() => import('@/pages/Warehouse/StandardProduct'));
 const ReagentConsumables = lazy(
   () => import('@/pages/Warehouse/ReagentConsumables')
 );
+const UserCenter = lazy(() => import('@/pages/Usercenter'));
 
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
 const Singin = lazy(() => import('@/pages/Auth/Singin'));
@@ -76,6 +77,11 @@ export const routes: CustomRouteObject[] = [
             title: '试剂耗材管理',
           },
         ],
+      },
+      {
+        path: '/usercenter',
+        element: <UserCenter />,
+        title: '用户中心',
       },
       // 未匹配上的路由 404
       {
