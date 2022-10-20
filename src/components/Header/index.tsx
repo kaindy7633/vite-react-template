@@ -4,6 +4,7 @@ import Logo from '@/assets/logo.png';
 import { APP_TITLE } from '@/constants';
 import Account from '@/components/Account';
 import IconFont from '@/components/IconFont';
+import HeaderSearch from '../HeaderSearch';
 import ModeTrigger from '../ModeTrigger';
 
 const Header: React.FC = () => {
@@ -13,10 +14,8 @@ const Header: React.FC = () => {
         <img src={Logo} alt={APP_TITLE} className="w-6 h-6" />
         <span className="text-[16px]">{APP_TITLE}</span>
       </div>
-      <div className="h-full flex flex-row flex-nowrap items-center gap-4">
-        <span className="h-full cursor-pointer flex justify-center items-center">
-          <IconFont type="icon-search" size={18} />
-        </span>
+      <div className="h-full flex flex-row flex-nowrap items-center gap-5">
+        <HeaderSearch />
         <span className="h-full cursor-pointer flex justify-center items-center">
           <IconFont type="icon-notice-message" size={19} />
         </span>

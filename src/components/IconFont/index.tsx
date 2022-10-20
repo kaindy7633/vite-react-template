@@ -10,13 +10,19 @@ type TIconFontProps = {
   type: string;
   size?: string | number;
   color?: string;
+  className?: string;
 };
 
-const IconFont: React.FC<TIconFontProps> = ({ type, size = 14, color }) => (
+const IconFont: React.FC<TIconFontProps> = ({
+  type,
+  size,
+  color,
+  className,
+}) => (
   <IconFontComponent
     type={type}
     style={{ fontSize: `${size}px`, color }}
-    className="cursor-pointer"
+    className={className}
   />
 );
 
