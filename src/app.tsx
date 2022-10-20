@@ -7,7 +7,6 @@ import { useThemeStore } from './store';
 const App: React.FC = () => {
   // 当前默认主题
   const { prefix } = useThemeStore();
-  console.log('prefix1122:', prefix);
 
   return (
     <ConfigProvider prefixCls={prefix}>

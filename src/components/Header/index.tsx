@@ -3,9 +3,9 @@ import { Layout } from 'antd';
 import Logo from '@/assets/logo.png';
 import { APP_TITLE } from '@/constants';
 import Account from '@/components/Account';
-import IconFont from '@/components/IconFont';
 import HeaderSearch from '../HeaderSearch';
 import ModeTrigger from '../ModeTrigger';
+import NoticeMessage from '../NoticeMessage/index';
 
 const Header: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       <div className="h-full flex flex-row flex-nowrap items-center gap-5">
         <HeaderSearch />
         <span className="h-full cursor-pointer flex justify-center items-center">
-          <IconFont type="icon-notice-message" size={19} />
+          <NoticeMessage />
         </span>
         <span className="h-full cursor-pointer flex justify-center items-center">
           <Account />
