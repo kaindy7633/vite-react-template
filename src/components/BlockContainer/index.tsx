@@ -13,7 +13,7 @@ const BlockContainer: React.FC<IBlockContainer> = ({
   children,
 }) => {
   return (
-    <Card title={title} extra={extra} className="shadow rounded-md">
+    <Card title={title} extra={extra} className="shadow-sm rounded">
       {children}
     </Card>
   );
