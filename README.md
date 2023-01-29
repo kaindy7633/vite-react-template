@@ -21,3 +21,11 @@ pnpm install
 ## 配置
 
 ## 开发
+
+## ChangeLog
+
+- 2023年1月升级 `Vite` 版本到 4.x，并且升级 Ant 到 5.x 版本
+
+- 2022年10月完成 `Vite` 升级及其配置改写
+
+- 2022年8月项目初始化完成，集成 `Vite`, `Ant Design`， `TailwindCSS`等。
