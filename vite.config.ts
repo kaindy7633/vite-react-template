@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import vitePluginImp from 'vite-plugin-imp';
 import { viteMockServe } from 'vite-plugin-mock';
-import react from "@vitejs/plugin-react-swc";
+import react from '@vitejs/plugin-react-swc';
 // 动态主题切换工具
 import { resolve } from 'path';
 
@@ -49,6 +49,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     server: {
+      host: '0.0.0.0',
       port: ~~env.VITE_PORT, // ~~ 用于将 string 转为 number，parseInt也可以
     },
     plugins: [

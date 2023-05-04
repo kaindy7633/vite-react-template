@@ -1,9 +1,7 @@
 import { lazy, useEffect } from 'react';
 import {
-  IndexRouteObject,
   Location,
   NavigateFunction,
-  NonIndexRouteObject,
   useLocation,
   useNavigate,
   useRoutes,
@@ -24,19 +22,7 @@ const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
 const Singin = lazy(() => import('@/pages/Auth/Singin'));
 const NotFound = lazy(() => import('@/pages/404'));
 
-type CustomRoutePerpies = {
-  title?: string;
-};
-
-type TIndexRouteObject = IndexRouteObject & CustomRoutePerpies;
-type TNonIndexRouteObject = NonIndexRouteObject &
-  CustomRoutePerpies & {
-    children?: TNonIndexRouteObject[];
-  };
-
-type CustomRouteObject = TIndexRouteObject | TNonIndexRouteObject;
-
-export const routes: CustomRouteObject[] = [
+export const routes: Record<string, any>[] = [
   // 页面路由策略
   {
     element: <PageLayout />,
@@ -113,8 +99,8 @@ export const routes: CustomRouteObject[] = [
  */
 export function searchRouteDetail(
   path: string,
-  routes: CustomRouteObject[]
-): CustomRouteObject | null {
+  routes: Record<string, any>[]
+): Record<string, any> | null {
   for (let item of routes) {
     if (item.path === path) return item;
     if (item.children) {
@@ -134,7 +120,7 @@ export function searchRouteDetail(
 function guard(
   location: Location,
   navigate: NavigateFunction,
-  routes: CustomRouteObject[]
+  routes: Record<string, any>[]
 ) {
   const { pathname } = location;
 
@@ -167,7 +153,7 @@ function guard(
   return true;
 }
 
-export const RouterGurad = (routes: CustomRouteObject[]) => {
+export const RouterGurad = (routes: Record<string, any>[]) => {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
