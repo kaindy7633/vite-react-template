@@ -1,10 +1,10 @@
 import React from 'react';
-import { Switch } from 'antd';
+import { Switch, theme } from 'antd';
 import { useThemeStore } from '@/store';
 import IconFont from '@/components/IconFont';
 
 const ModeTrigger: React.FC = () => {
-  const { setPrefix } = useThemeStore();
+  const { setTheme } = useThemeStore();
 
   /**
    * @TODO 切换显示模式
@@ -13,7 +13,9 @@ const ModeTrigger: React.FC = () => {
     checked: boolean,
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    checked ? setPrefix('default') : setPrefix('dark');
+    checked
+      ? setTheme({ algorithm: theme.defaultAlgorithm })
+      : setTheme({ algorithm: theme.darkAlgorithm });
   };
 
   return (
