@@ -12,7 +12,7 @@ interface ISiderProps {
 const Sider: React.FC<ISiderProps> = ({ collapsed, setCollapsed }) => {
   return (
     <Layout.Sider
-      className="overflow-hidden fixed left-0 top-[48px] bottom-0"
+      className="overflow-hidden fixed left-0 top-0 bottom-0 bg-white"
       trigger={null}
       collapsible
       collapsed={collapsed}
