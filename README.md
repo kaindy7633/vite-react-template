@@ -22,7 +22,19 @@ pnpm install
 
 ## 开发
 
+## 版本说明
+
+项目中版本需要遵循 [semver](http://caibaojian.com/npm/misc/semver.html). 规范，该规范的标准版本号采用 `X.Y.Z` 的格式。
+
+- `alpha`：是内部测试版,一般不向外部发布,会有很多 `Bug`. 一般只有测试人员使用。
+- `beta`：也是测试版，这个阶段的版本会一直加入新的功能。在 `alpha` 版之后推出。
+- `rc` (`Release Candidate`)：最终测试版本；可能成为最终产品的候选版本，如果未出现问题则可发布成为正式版本。
+
+示例：`1.2.0-beta.1`，`1.0.1-alpha.1`，`3.0.0-rc.1`
+
 ## ChangeLog
+
+- 2023年6月升级 Ant 版本
 
 - 2023年1月升级 `Vite` 版本到 4.x，并且升级 Ant 到 5.x 版本
 
