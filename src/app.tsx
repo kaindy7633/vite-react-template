@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ConfigProvider } from 'antd';
-import { Locale } from 'antd/lib/locale-provider';
+import { Locale } from 'antd/es/locale';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { RouterGurad, routes } from '@/routes';
 import Loading from '@/pages/Loading';

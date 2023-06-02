@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
-import Logo from '@/assets/logo.png';
+import Logo from '@/assets/logo.svg';
 import { APP_TITLE } from '@/constants';
 import Account from '@/components/Account';
 import HeaderSearch from '../HeaderSearch';

@@ -2,7 +2,7 @@
  * @TODO 全局常量配置
  */
 
-export const APP_TITLE = '易检测-资源管理';
+export const APP_TITLE = 'React项目模板';
 
 export const ICON_FONT_SCRIPTURL =
   '//at.alicdn.com/t/c/font_3701640_pcinl3ll0vr.js';
