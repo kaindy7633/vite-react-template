@@ -7,16 +7,16 @@ import Loading from '@/pages/Loading';
 import { useThemeStore } from './store';
 
 const App: React.FC = () => {
-  // 当前默认主题
-  const { prefix } = useThemeStore();
+  // 当前主题设置
+  const { theme } = useThemeStore();
 
   // 当前系统语言
   const [locale] = useState<Locale>(zhCN);
 
   return (
-    <ConfigProvider prefixCls={prefix} locale={locale}>
+    <ConfigProvider locale={locale} theme={theme}>
       <React.Suspense fallback={<Loading />}>
-        <div className={`App ${prefix} h-[100vh]`}>{RouterGurad(routes)}</div>
+        <div className={`App h-[100vh]`}>{RouterGurad(routes)}</div>
       </React.Suspense>
     </ConfigProvider>
   );

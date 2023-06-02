@@ -6,7 +6,7 @@ import {
   useNavigate,
   useRoutes,
 } from 'react-router-dom';
-import { APP_TITLE } from '@/constants';
+import { appTitle } from '@/constants';
 
 const PageLayout = lazy(() => import('@/layouts/PageLayout'));
 const Home = lazy(() => import('@/pages/Home'));
@@ -136,9 +136,9 @@ function guard(
    * @TODO 动态自定义窗口标题
    */
   if (routedetail.title) {
-    document.title = `${APP_TITLE} - ${routedetail.title}`;
+    document.title = `${appTitle} - ${routedetail.title}`;
   } else {
-    document.title = `${APP_TITLE}`;
+    document.title = `${appTitle}`;
   }
 
   //如果需要权限验证

@@ -3,7 +3,7 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { notification } from 'antd';
-import { codeMessage } from '@/constants/index';
+import { codeMessage } from '@/constants';
 import { extend, type ResponseError } from 'umi-request';
 
 /**

@@ -8,6 +8,8 @@
  * 通过消除使用 Context Provides 从而使代码更短、更易读
  * 参考文章：https://juejin.cn/post/7134633741774749710
  */
+import { ThemeConfig } from 'antd';
+import { appThemeColor, appThemeMode } from '@/constants';
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
@@ -20,11 +22,6 @@ type TTestStoreProps = {
 type TTokenStoreProps = {
   token: string;
   setToken: () => void;
-};
-
-type TThemeStoreProps = {
-  prefix: string;
-  setPrefix: (_prefix: string) => void;
 };
 
 export const useTokenStore = create<TTokenStoreProps>()(
@@ -50,14 +47,21 @@ export const useStore = create<TTestStoreProps>((set) => ({
 }));
 
 /**
- * @TODO 定义切换主题变量
+ * @TODO 定义切换主题变量, 5.x 版本升级后，这里数据结构发生修改
  */
-export const useThemeStore = create<TThemeStoreProps>()(
+export const useThemeStore = create<{
+  theme: ThemeConfig;
+  setTheme: (_theme: ThemeConfig) => void;
+}>()(
   devtools(
     persist(
       (set, get) => ({
-        prefix: 'default',
-        setPrefix: (_prefix) => set(() => ({ prefix: _prefix })),
+        theme: {
+          token: { colorPrimary: appThemeColor },
+          algorithm: appThemeMode,
+        },
+        setTheme: (_theme) =>
+          set((state) => ({ theme: { ...state.theme, ..._theme } })),
       }),
       {
         name: 'food-storage', // unique name

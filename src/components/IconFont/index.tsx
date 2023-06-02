@@ -1,9 +1,9 @@
 import React from 'react';
-import { ICON_FONT_SCRIPTURL } from '@/constants';
+import { appIconFontScript } from '@/constants';
 import { createFromIconfontCN } from '@ant-design/icons';
 
 const IconFontComponent = createFromIconfontCN({
-  scriptUrl: ICON_FONT_SCRIPTURL,
+  scriptUrl: appIconFontScript,
 });
 
 type TIconFontProps = {

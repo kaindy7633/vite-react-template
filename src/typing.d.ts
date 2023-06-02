@@ -1,4 +1,4 @@
-import { codeMessage } from '@/constants/index';
+import { codeMessage } from '@/constants';
 
 declare module 'PrefetchLazyPathsPlugin';
 
