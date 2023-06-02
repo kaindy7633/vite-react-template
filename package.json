@@ -3,6 +3,9 @@
   "description": "基于Vite创建的React Typescript模版工程, 包含Antd、TailwindCSS",
   "private": true,
   "version": "1.1.0",
+  "keywords": ["vite", "react", "typescript", "tailwindcss", "antd"],
+  "homepage": "www.example.com",
+  "author": "liuzhen 3494688@qq.com (https://github.com/kaindy7633)",
   "type": "module",
   "scripts": {
     "dev:mock": "vite --mode mock",
@@ -51,5 +54,6 @@
     "vite": "^4.3.9",
     "vite-plugin-imp": "^2.3.1",
     "vite-plugin-mock": "^2.9.6"
-  }
+  },
+  "license": "UNLICENSED"
 }
