@@ -1,7 +1,6 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Button, Layout } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import classNames from 'classnames';
 import AppMenu from '../AppMenu';
 
 interface ISiderProps {
@@ -12,27 +11,20 @@ interface ISiderProps {
 const Sider: React.FC<ISiderProps> = ({ collapsed, setCollapsed }) => {
   return (
     <Layout.Sider
-      className="overflow-hidden fixed left-0 top-0 bottom-0"
+      className="overflow-hidden fixed left-0 top-0 bottom-0 h-full"
       trigger={null}
       collapsible
       collapsed={collapsed}
       collapsedWidth={48}
+      theme="light"
     >
       <AppMenu />
-      <div
-        className={classNames(
-          'absolute bottom-0 left-0 w-full h-10 flex items-center',
-          collapsed ? 'justify-center' : 'justify-start pl-4'
-        )}
-      >
-        {React.createElement(
-          collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-          {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          }
-        )}
-      </div>
+      <Button
+        type="text"
+        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        onClick={() => setCollapsed(!collapsed)}
+        className="absolute left-1/2 bottom-0 transform -translate-x-1/2"
+      />
     </Layout.Sider>
   );
 };
