@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   return (
     <Layout.Header className="text-white h-12 w-full pl-3 pr-4 flex items-center justify-between fixed left-0 top-0 right-0 z-50 shadow-md">
       <div className="h-full flex flex-row flex-nowrap items-center gap-3">
-        <img src="/logo.svg" alt={appTitle} className="w-6 h-6" />
+        <img src="/Logo.svg" alt={appTitle} className="w-6 h-6" />
         <span className="text-[16px]">{appTitle}</span>
       </div>
       <div className="h-full flex flex-row flex-nowrap items-center gap-5">

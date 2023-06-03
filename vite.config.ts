@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv } from 'vite';
-import vitePluginImp from 'vite-plugin-imp';
 import { viteMockServe } from 'vite-plugin-mock';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
@@ -18,19 +17,7 @@ export default defineConfig(({ command, mode }) => {
       host: '0.0.0.0',
       port: ~~env.VITE_PORT, // ~~ 用于将 string 转为 number，parseInt也可以
     },
-    plugins: [
-      react(),
-      vitePluginImp({
-        optimize: true,
-        libList: [
-          {
-            libName: 'antd',
-            style: (name) => `antd/es/${name}/style`,
-          },
-        ],
-      }),
-      viteMockServe({ mockPath: './mock' }),
-    ],
+    plugins: [react(), viteMockServe({ mockPath: './mock' })],
     css: {
       preprocessorOptions: {
         less: {
