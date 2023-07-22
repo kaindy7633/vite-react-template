@@ -1,0 +1,115 @@
+# 依赖镜像 node
+image: node:18.16.0
+
+# 定义阶段 stages
+stages:
+  #- lint
+  #- test
+  - build
+  - deploy
+
+cache: # 缓存
+  paths:
+    - node_modules/
+    - dist
+
+# 定义 job - lint 项目
+# job1 - Lint阶段:
+#   stage: lint
+#   only:
+#     - test
+#     - main
+#   script:
+#     - echo "Lint阶段暂未配置任何脚本"
+
+# # 定义 job - test 项目
+# job2 - Test阶段:
+#   stage: test
+#   only:
+#     - test
+#     - main
+#   script:
+#     - echo "Test阶段暂未配置任何脚本"
+
+# 定义 job - build 项目
+job3 - Build阶段:
+  # 开始之前需要安装依赖
+  stage: build
+  only:
+    - test
+    - main
+  script:
+    - npm config set registry https://registry.npmmirror.com
+    - npm install pnpm -g
+    - echo "😜 开始安装依赖"
+    - pnpm install
+    - echo "👌 开始编译"
+    - |
+      if [ "$CI_COMMIT_REF_NAME" = "test" ]; then
+        pnpm build:test
+      elif [ "$CI_COMMIT_REF_NAME" = "main" ]; then
+        pnpm build
+      fi
+    - echo "finish build stage"
+
+# 定义 job - 将项目发布到线上
+job4 - Deploy发布阶段:
+  stage: deploy
+  only:
+    - test
+    - main
+  before_script:
+    ##
+    ## 如果尚未安装，请安装 ssh-agent，Docker需要它
+    ## （如果您使用基于 RPM 的镜像，请将 apt-get 更改为 yum）
+    ##
+    - 'which ssh-agent || (apt-get update -y && apt-get install openssh-client git -y)'
+
+    ##
+    ## 在构建环境中运行 ssh-agent
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## 将存储在 SSH_PRIVATE_KEY 变量中的 SSH 密钥添加到代理商店中
+    ## 我们使用 tr 来修复换行符，这使得 ed25519 密钥可以正常工作
+    ## 而无需额外的 base64 编码
+    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    ##
+    ## SSH_PRIVATE_KEY 是在 gitlab 中配置的 gitlab-runner 服务器的私钥
+    ## 同时，在 gitlab-runner 中生成的公钥，需要复制到要免密登录的测试或生产服务器中 (~/.ssh/authorized_keys)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+    ##
+    ## 创建 SSH 目录并赋予正确的权限
+    ##
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+
+    - |
+      if [ "$CI_COMMIT_REF_NAME" = "test" ]; then
+        ssh-keyscan $TARGET_TEST_HOST >> ~/.ssh/known_hosts
+      elif [ "$CI_COMMIT_REF_NAME" = "main" ]; then
+        ssh-keyscan $TARGET_PROD_HOST >> ~/.ssh/known_hosts
+      fi
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    ## 下面的脚本中，$TARGET_TEST_HOST、$TARGET_PROD_HOST 分别是测试服务器IP地址和生产服务器IP地址，它们都配置在 gitlab 中
+    ## "你的测试服务器中包路径" 需要替换为服务器包路径地址，如：/home/docker_volume/standard-retrieval/nginx/html/
+    ## "你的生产服务器中包路径" 需要替换为服务器包路径地址，如：/var/data/wwwroot/material/
+    - ls
+    - |
+      if [ "$CI_COMMIT_REF_NAME" = "test" ]; then
+        echo "🚚 开始测试环境部署操作"
+        ssh dev@$TARGET_TEST_HOST "cd 你的测试服务器中包路径 && rm -rf dist"
+        echo "已登录目标测试服务器..."
+        scp -r dist dev@$TARGET_TEST_HOST:你的测试服务器中包路径
+        echo "已完成版本文件的替换..."
+        echo "😄 测试环境部署完成"
+      elif [ "$CI_COMMIT_REF_NAME" = "main" ]; then
+        echo "🚚 开始生产环境部署操作"
+        ssh dev@$TARGET_PROD_HOST "cd 你的生产服务器中包路径 ; sh operate_folder.sh"
+        echo "已登录目标生产服务器..."
+        scp -r dist dev@$TARGET_PROD_HOST:你的生产服务器中包路径
+        echo "😄 生产环境部署完成"
+      fi

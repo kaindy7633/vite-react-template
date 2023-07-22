@@ -34,6 +34,11 @@ pnpm install
 
 ## ChangeLog
 
+- 2023年7月
+  - 升级 `Ant` 版本到 `5.7.2`
+  - 升级 `Vite` 版本到 `4.4.6`
+  - 新增 `gitlab-ci.ymml` 配置文件，方便进入开发阶段后进行 `CI/CD` 操作
+
 - 2023年6月升级 Ant 版本
 
 - 2023年1月升级 `Vite` 版本到 4.x，并且升级 Ant 到 5.x 版本
