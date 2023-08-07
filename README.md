@@ -34,6 +34,9 @@ pnpm install
 
 ## ChangeLog
 
+- 2023年8月
+  - 修改并移植全局 Loaidng 组件到 components 目录
+
 - 2023年7月
   - 升级 `Ant` 版本到 `5.7.2`
   - 升级 `Vite` 版本到 `4.4.6`
