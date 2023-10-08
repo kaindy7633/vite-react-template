@@ -34,6 +34,10 @@ pnpm install
 
 ## ChangeLog
 
+- 2023年10月
+  - 升级 `Ant` 版本到 `5.9.4`
+  - Vite配置添加代理示例代码、修改 `plugins` 选项、添加 `build` 选项以优化编译后的包大小
+
 - 2023年8月
   - 修改并移植全局 Loaidng 组件到 components 目录
 

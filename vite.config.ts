@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv } from 'vite';
+import vitePluginImp from 'vite-plugin-imp';
 import { viteMockServe } from 'vite-plugin-mock';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
@@ -16,8 +17,39 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: '0.0.0.0',
       port: ~~env.VITE_PORT, // ~~ 用于将 string 转为 number，parseInt也可以
+      cors: true,
+      // 代理服务，示例代码
+      proxy: {
+        '/api': {
+          target: env.VITE_PROXY_TARGET,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+        '/pdf': {
+          target: 'https://xinrui-yjc-file-ejc.oss-cn-qingdao.aliyuncs.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/pdf/, '/pdf'),
+        },
+      },
+      // ============= 开始本地 HTTPS =============================
+      // https: {
+      //   key: fs.readFileSync('CertKeys/agent2-key.pem'),
+      //   cert: fs.readFileSync('CertKeys/agent2-cert.pem'),
+      // },
     },
-    plugins: [react(), viteMockServe({ mockPath: './mock' })],
+    plugins: [
+      react(),
+      vitePluginImp({
+        optimize: true,
+        libList: [
+          {
+            libName: 'antd',
+            style: (name) => `antd/es/${name}/style`,
+          },
+        ],
+      }),
+      viteMockServe({ mockPath: './mock' }),
+    ],
     css: {
       preprocessorOptions: {
         less: {
@@ -26,6 +58,21 @@ export default defineConfig(({ command, mode }) => {
           // modifyVars: {
           //   'border-radius-base': '4px',
           // },
+        },
+      },
+    },
+    build: {
+      // 在这里配置打包时的rollup配置
+      // 配置选项参考：https://www.rollupjs.com/guide/big-list-of-options#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD-core-functionality
+      // 配置实战参考1：https://juejin.cn/post/7177982374259949624
+      // 配置实战参考2：https://juejin.cn/post/7157354344587722782
+      rollupOptions: {
+        output: {
+          manualChunks: (id: string) => {
+            if (id.includes('node_modules')) {
+              id.toString().split('node_modules/')[1].split('/')[0].toString();
+            }
+          },
         },
       },
     },
