@@ -2,9 +2,10 @@
  * request 网络请求工具
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
-import { notification } from 'antd';
-import { codeMessage } from '@/constants';
-import { extend, type ResponseError } from 'umi-request';
+import { notification } from "antd";
+import { codeMessage } from "@/constants";
+import { extend, type ResponseError } from "umi-request";
+import { useTokenStore } from "../store";
 
 /**
  * @TODO 异常处理程序
@@ -21,8 +22,8 @@ const errorHandler = (error: ResponseError) => {
     });
   } else if (!response) {
     notification.error({
-      description: '您的网络发生异常，无法连接服务器',
-      message: '网络异常',
+      description: "您的网络发生异常，无法连接服务器",
+      message: "网络异常",
     });
   }
 
@@ -45,16 +46,22 @@ const request = extend({
  * @TODO 请求拦截
  */
 request.interceptors.request.use((url, options) => {
-  const newOptions = { ...options };
-  if (!(newOptions.data instanceof FormData)) {
-    newOptions.data = {
-      ...newOptions.data,
-      userId: '00000001',
-      token: 'adsadsafcdscd',
-    };
-  } else {
-    newOptions.data.append('userId', '1');
-    newOptions.data.append('token', 'adsadsafcdscd');
+  const { accessToken } = useTokenStore.getState().token;
+
+  let newOptions = { ...options };
+
+  newOptions.headers = {
+    ...newOptions.headers,
+    Authorization: `${accessToken}`,
+  };
+
+  // 如果是导出类接口加上类型
+  if (
+    url.includes("export") ||
+    url.includes("download") ||
+    url.includes("Download")
+  ) {
+    newOptions.responseType = "blob";
   }
   return {
     url: `${url}`,
@@ -69,15 +76,6 @@ request.interceptors.response.use(async (response) => {
   // 克隆响应对象做解析处理
   // 这里的res就是我们请求到的数据
   const res = await response.clone().json();
-  const { code, msg } = res;
-  if (code !== 200) {
-    notification.error({
-      message: '请求错误',
-      description: `${code}: ${msg}`,
-    });
-    // 在处理结果时判断res是否有值即可
-    return;
-  }
   return res;
 });
 

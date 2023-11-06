@@ -19,20 +19,27 @@ type TTestStoreProps = {
   subtractVotes: () => void;
 };
 
-type TTokenStoreProps = {
-  token: string;
-  setToken: () => void;
+type TokenConfig = {
+  accessToken: string;
+  refreshToken: string;
 };
 
-export const useTokenStore = create<TTokenStoreProps>()(
+export const useTokenStore = create<{
+  token: TokenConfig;
+  setToken: (_token: TokenConfig) => void;
+}>()(
   devtools(
     persist(
       (set, get) => ({
-        token: '',
-        setToken: () => set((state) => ({ token: '1234' })),
+        token: {
+          accessToken: '',
+          refreshToken: '',
+        },
+        setToken: (_token) =>
+          set((state) => ({ token: { ...state.token, ..._token } })),
       }),
       {
-        name: 'food-storage', // unique name
+        name: 'token-storage', // unique name
         getStorage: () => sessionStorage, // (optional) by default, 'localStorage' is used
       }
     )

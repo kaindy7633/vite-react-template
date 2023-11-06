@@ -34,6 +34,11 @@ pnpm install
 
 ## ChangeLog
 
+- 2023年11月
+  - 升级 `Ant` 版本到 `5.11.0`
+  - 升级 `Vite` 版本到 `4.5.0`
+  - 优化 `request.ts` 中封装的网络请求拦截器，优化 `zustand store` 中关于 `token` 的配置，并应用到 `request` 网络请求库中.
+
 - 2023年10月
   - 升级 `Ant` 版本到 `5.9.4`
   - Vite配置添加代理示例代码、修改 `plugins` 选项、添加 `build` 选项以优化编译后的包大小
