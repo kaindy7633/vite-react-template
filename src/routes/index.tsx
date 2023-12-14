@@ -22,6 +22,9 @@ const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
 const Singin = lazy(() => import('@/pages/Auth/Singin'));
 const NotFound = lazy(() => import('@/pages/404'));
 
+// 测试Demo
+const Demo = lazy(() => import('@/pages/Demo'));
+
 export const routes: Record<string, any>[] = [
   // 页面路由策略
   {
@@ -68,6 +71,11 @@ export const routes: Record<string, any>[] = [
         path: '/usercenter',
         element: <UserCenter />,
         title: '用户中心',
+      },
+      {
+        path: '/demo',
+        element: <Demo />,
+        title: 'demo',
       },
       // 未匹配上的路由 404
       {
