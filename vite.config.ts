@@ -39,15 +39,15 @@ export default defineConfig(({ command, mode }) => {
     },
     plugins: [
       react(),
-      vitePluginImp({
-        optimize: true,
-        libList: [
-          {
-            libName: 'antd',
-            style: (name) => `antd/es/${name}/style`,
-          },
-        ],
-      }),
+      // vitePluginImp({
+      //   optimize: true,
+      //   libList: [
+      //     {
+      //       libName: 'antd',
+      //       style: (name) => `antd/es/${name}/style`,
+      //     },
+      //   ],
+      // }),
       viteMockServe({ mockPath: './mock' }),
     ],
     css: {

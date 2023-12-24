@@ -57,6 +57,12 @@ const AppMenu: React.FC<MenuProps> = () => {
           label: '用户中心',
           onClick: () => navigate('/usercenter'),
         },
+        {
+          key: 'demo',
+          icon: <IconFont type="icon-usercenter" size={20} />,
+          label: 'demo',
+          onClick: () => navigate('/demo'),
+        },
       ]}
     />
   );
