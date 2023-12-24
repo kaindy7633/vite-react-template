@@ -34,8 +34,12 @@ pnpm install
 
 ## ChangeLog
 
+- 2023年12月
+  - 升级 `Antd` 版本到 `5.12.5`
+  - 升级 `Zustand` 版本到 `4.4.7`
+
 - 2023年11月
-  - 升级 `Ant` 版本到 `5.11.0`
+  - 升级 `Antd` 版本到 `5.11.0`
   - 升级 `Vite` 版本到 `4.5.0`
   - 优化 `request.ts` 中封装的网络请求拦截器，优化 `zustand store` 中关于 `token` 的配置，并应用到 `request` 网络请求库中.
 
