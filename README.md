@@ -39,6 +39,7 @@ pnpm install
   - 升级 `Zustand` 版本到 `4.4.7`
   - 修改 `zustand` 升级后的配置文件，使用新的 `API`。
   - 使用 `Suspense` 特性在组件加载时加入缓动效果，解决组件切换时页面闪动的问题
+  - 新增 `Dockerfile` 文件，在项目需要时使用 `docker build` 将项目打包成 `docker` 镜像
 
 - 2023年11月
   - 升级 `Antd` 版本到 `5.11.0`
