@@ -1,4 +1,4 @@
-import { lazy, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import {
   Location,
   NavigateFunction,
@@ -25,6 +25,13 @@ const NotFound = lazy(() => import('@/pages/404'));
 // 测试Demo
 const Demo = lazy(() => import('@/pages/Demo'));
 
+/**
+ *  返回带有 fallback 效果的组件，配合CSS解决组件切换时页面闪动的问题
+ */
+const generateFallbackComponent = (children: React.ReactNode) => (
+  <Suspense fallback={<div className="loader" />}>{children}</Suspense>
+);
+
 export const routes: Record<string, any>[] = [
   // 页面路由策略
   {
@@ -41,12 +48,12 @@ export const routes: Record<string, any>[] = [
         children: [
           {
             path: '/purchase/one',
-            element: <PurchaseOne />,
+            element: generateFallbackComponent(<PurchaseOne />),
             title: '采购管理 - 选项一',
           },
           {
             path: '/purchase/two',
-            element: <PurchaseTwo />,
+            element: generateFallbackComponent(<PurchaseTwo />),
             title: '采购管理 - 选项二',
           },
         ],
@@ -57,24 +64,24 @@ export const routes: Record<string, any>[] = [
         children: [
           {
             path: '/warehouse/standard-product',
-            element: <StandardProduct />,
+            element: generateFallbackComponent(<StandardProduct />),
             title: '标准品管理',
           },
           {
             path: '/warehouse/reagent-consumables',
-            element: <ReagentConsumables />,
+            element: generateFallbackComponent(<ReagentConsumables />),
             title: '试剂耗材管理',
           },
         ],
       },
       {
         path: '/usercenter',
-        element: <UserCenter />,
+        element: generateFallbackComponent(<UserCenter />),
         title: '用户中心',
       },
       {
         path: '/demo',
-        element: <Demo />,
+        element: generateFallbackComponent(<Demo />),
         title: 'demo',
       },
       // 未匹配上的路由 404

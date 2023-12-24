@@ -8,16 +8,10 @@
  * 通过消除使用 Context Provides 从而使代码更短、更易读
  * 参考文章：https://juejin.cn/post/7134633741774749710
  */
-import { ThemeConfig } from 'antd';
-import { appThemeColor, appThemeMode } from '@/constants';
-import create from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-
-type TTestStoreProps = {
-  votes: number;
-  addVotes: () => void;
-  subtractVotes: () => void;
-};
+import { theme as AntdTheme, ThemeConfig } from 'antd';
+import { appThemeColor } from '@/constants';
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
 type TokenConfig = {
   accessToken: string;
@@ -40,24 +34,17 @@ export const useTokenStore = create<{
       }),
       {
         name: 'token-storage', // unique name
-        getStorage: () => sessionStorage, // (optional) by default, 'localStorage' is used
+        storage: createJSONStorage(() => sessionStorage),
       }
     )
   )
 );
 
-// 定义 Store，并导出
-export const useStore = create<TTestStoreProps>((set) => ({
-  votes: 0,
-  addVotes: () => set((state) => ({ votes: state.votes + 1 })),
-  subtractVotes: () => set((state) => ({ votes: state.votes - 1 })),
-}));
-
 /**
  * @TODO 定义切换主题变量, 5.x 版本升级后，这里数据结构发生修改
  */
 export const useThemeStore = create<{
-  theme: ThemeConfig;
+  theme: ThemeConfig & Record<string, any>;
   setTheme: (_theme: ThemeConfig) => void;
 }>()(
   devtools(
@@ -65,13 +52,14 @@ export const useThemeStore = create<{
       (set, get) => ({
         theme: {
           token: { colorPrimary: appThemeColor },
-          algorithm: appThemeMode,
+          algorithm: AntdTheme.defaultAlgorithm,
         },
         setTheme: (_theme) =>
           set((state) => ({ theme: { ...state.theme, ..._theme } })),
       }),
       {
         name: 'food-storage', // unique name
+        storage: createJSONStorage(() => sessionStorage),
       }
     )
   )

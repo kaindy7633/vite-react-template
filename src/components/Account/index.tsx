@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Dropdown, MenuProps } from 'antd';
+import { Avatar, Dropdown, MenuProps, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const items: MenuProps['items'] = [
@@ -46,7 +46,7 @@ const Account: React.FC = () => {
     <Dropdown menu={{ items }} placement="bottomRight" arrow>
       <div className="w-full h-full flex flex-row flex-nowrap justify-center items-center gap-1">
         <Avatar icon={<UserOutlined />} size="small" />
-        <span>管理员登录</span>
+        <Typography>管理员登录</Typography>
       </div>
     </Dropdown>
   );

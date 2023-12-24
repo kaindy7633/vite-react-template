@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Empty, Input, Modal } from 'antd';
+import { theme as AntdTheme, Empty, Input, Modal } from 'antd';
+import { useThemeStore } from '@/store';
+import classnames from 'classnames';
 import IconFont from '@/components/IconFont';
 
 const HeaderSearch: React.FC = () => {
+  const { theme } = useThemeStore();
+
   const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
 
   return (
@@ -12,7 +16,15 @@ const HeaderSearch: React.FC = () => {
         onClick={() => setSearchModalOpen(true)}
         title="站内搜索"
       >
-        <IconFont type="icon-search" className="text-lg" />
+        <IconFont
+          type="icon-search"
+          className={classnames(
+            'text-lg',
+            theme.algorithm === AntdTheme.defaultAlgorithm || !theme.algorithm
+              ? ''
+              : 'text-white'
+          )}
+        />
       </span>
 
       <Modal
