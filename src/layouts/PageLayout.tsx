@@ -13,9 +13,9 @@ const PageLayout: React.FC = () => {
 
   return (
     <Layout className="w-full h-full relative flex flex-col">
-      {/* <Header /> */}
-      <Layout className="flex-1 relative">
-        {/* <Sider collapsed={collapsed} setCollapsed={setCollapsed} /> */}
+      <Header />
+      <Layout className="flex-1 relative mt-12">
+        <Sider collapsed={collapsed} setCollapsed={setCollapsed} />
         <Content className={classNames('p-4 overflow-auto')}>
           <Outlet />
         </Content>
