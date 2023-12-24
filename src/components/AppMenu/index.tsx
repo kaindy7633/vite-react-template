@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, type MenuProps } from 'antd';
+import { layoutConfig } from '@/constants/layout';
 import IconFont from '@/components/IconFont';
 
 const AppMenu: React.FC<MenuProps> = () => {
@@ -9,6 +10,7 @@ const AppMenu: React.FC<MenuProps> = () => {
   return (
     <Menu
       mode="inline"
+      theme={layoutConfig.menuTheme}
       defaultSelectedKeys={['home']}
       items={[
         {

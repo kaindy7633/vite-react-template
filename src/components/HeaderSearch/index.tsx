@@ -12,7 +12,7 @@ const HeaderSearch: React.FC = () => {
         onClick={() => setSearchModalOpen(true)}
         title="站内搜索"
       >
-        <IconFont type="icon-search" className="text-lg hover:text-gray-200" />
+        <IconFont type="icon-search" className="text-lg" />
       </span>
 
       <Modal
