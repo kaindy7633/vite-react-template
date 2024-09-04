@@ -34,6 +34,10 @@ pnpm install
 
 ## ChangeLog
 
+- 2024年08月
+  - 升级 antd 到 5.20.3 版本
+  - 升级 pro-component 到 2.7.15 版本
+
 - 2023年12月
   - 升级 `Antd` 版本到 `5.12.5`
   - 升级 `Zustand` 版本到 `4.4.7`
