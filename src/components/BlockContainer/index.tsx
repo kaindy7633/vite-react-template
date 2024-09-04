@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card } from 'antd';
+import { theme as AntdTheme, Card } from 'antd';
+import { useThemeStore } from '@/store';
+import classnames from 'classnames';
 
 interface IBlockContainer {
   title?: string;
@@ -16,12 +18,19 @@ const BlockContainer: React.FC<IBlockContainer> = ({
   bodyStyles = { padding: '1rem', borderRadius: 0 },
   children,
 }) => {
+  const { theme } = useThemeStore();
+
   return (
     <Card
       title={title}
       extra={extra}
       bordered={isBordered}
-      className="!shadow-cur rounded-cur"
+      className={classnames(
+        '!shadow-cur rounded-cur',
+        theme.algorithm === AntdTheme.defaultAlgorithm || !theme.algorithm
+          ? 'bg-[#FFFFFF]'
+          : 'bg-[#26324D]'
+      )}
       styles={{ body: bodyStyles }}
     >
       {children}

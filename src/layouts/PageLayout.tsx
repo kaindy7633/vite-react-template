@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout } from 'antd';
+import { theme as AntdTheme, Layout } from 'antd';
 import { layoutConfig } from '@/constants/layout';
+import { useThemeStore } from '@/store';
 import classNames from 'classnames';
 import Header from '@/components/Header';
 import Sider from '@/components/Sider';
@@ -10,6 +11,7 @@ import Sider from '@/components/Sider';
 const { Content } = Layout;
 
 const PageLayout: React.FC = () => {
+  const { theme } = useThemeStore();
   const [collapsed, setCollapsed] = useState(layoutConfig?.menuCollapsed);
 
   return (
@@ -20,7 +22,17 @@ const PageLayout: React.FC = () => {
           <Layout className="flex-1 h-full relative">
             <Header />
             <Layout className="flex-1 relative">
-              <Content className={classNames('p-4 overflow-auto bg-[#F8FAFC]')}>
+              {/* TODO 这里使用主题配置文件变化来判断背景颜色的使用，需要优化 */}
+              <Content
+                className={classNames(
+                  'p-4 overflow-auto',
+                  theme.algorithm === AntdTheme.defaultAlgorithm ||
+                    !theme.algorithm
+                    ? 'bg-[#F8FAFC]'
+                    : 'bg-[#192232]'
+                )}
+              >
+                {/* {theme.darkAlgorithm} */}
                 <Outlet />
               </Content>
             </Layout>

@@ -3,6 +3,7 @@ import { Button, Layout, Space } from 'antd';
 import { appTitle } from '@/constants/app';
 import { layoutConfig } from '@/constants/layout';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import classnames from 'classnames';
 import styled from 'styled-components';
 import AppMenu from '../AppMenu';
 
@@ -23,7 +24,9 @@ const SideCollapseButton = styled(Button)`
 const Sider: React.FC<ISiderProps> = ({ collapsed, setCollapsed }) => {
   return (
     <Layout.Sider
-      className="overflow-hidden fixed left-0 top-0 bottom-0 h-full bg-transparent"
+      className={classnames(
+        'overflow-hidden fixed left-0 top-0 bottom-0 h-full !bg-[#202B41]'
+      )}
       trigger={null}
       collapsible
       collapsed={collapsed}

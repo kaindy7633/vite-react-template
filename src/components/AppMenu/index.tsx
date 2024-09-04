@@ -12,6 +12,7 @@ const AppMenu: React.FC<MenuProps> = () => {
       mode="inline"
       theme={layoutConfig.menuTheme}
       defaultSelectedKeys={['home']}
+      className="bg-[#202B41]"
       items={[
         {
           key: 'home',
