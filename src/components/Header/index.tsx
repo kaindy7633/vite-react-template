@@ -20,7 +20,7 @@ const Header: React.FC = () => {
           : 'w-full  h-[48px] flex items-center justify-end px-4',
         theme.algorithm === AntdTheme.defaultAlgorithm || !theme.algorithm
           ? 'bg-white'
-          : 'bg-[#141414]'
+          : 'bg-[#212B42]'
       )}
     >
       {layoutConfig.mode === 'vertical' ? (
