@@ -6,6 +6,9 @@ module.exports = {
       boxShadow: {
         cur: '0 3px 10px 0 rgb(48 46 56 / 6%);',
       },
+      borderRadius: {
+        cur: '0.5rem',
+      },
     },
   },
   plugins: [],

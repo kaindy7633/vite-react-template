@@ -19,7 +19,7 @@ const BlockContainer: React.FC<IBlockContainer> = ({
       title={title}
       extra={extra}
       bordered={isBordered}
-      className="rounded shadow-cur"
+      className="!shadow-cur rounded-cur"
     >
       {children}
     </Card>
