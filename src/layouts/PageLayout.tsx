@@ -2,17 +2,15 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import { appTitle } from '@/constants/app';
 import { layoutConfig } from '@/constants/layout';
 import classNames from 'classnames';
-import classnames from 'classnames';
 import Header from '@/components/Header';
 import Sider from '@/components/Sider';
 
 const { Content } = Layout;
 
 const PageLayout: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(layoutConfig?.menuCollapsed);
 
   return (
     <>
@@ -22,7 +20,7 @@ const PageLayout: React.FC = () => {
           <Layout className="flex-1 h-full relative">
             <Header />
             <Layout className="flex-1 relative">
-              <Content className={classNames('p-4 overflow-auto')}>
+              <Content className={classNames('p-4 overflow-auto bg-[#F8FAFC]')}>
                 <Outlet />
               </Content>
             </Layout>

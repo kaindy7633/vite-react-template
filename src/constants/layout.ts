@@ -9,10 +9,13 @@ type TLayoutConfigProps = {
   mode: 'horizontal' | 'vertical' | 'blank';
   // 菜单主题
   menuTheme: 'dark' | 'light';
+  // 左侧菜单默认状态，目前设置为完整模式,即全部展开
+  menuCollapsed: boolean;
   // 其他配置...
 };
 
 export const layoutConfig: TLayoutConfigProps = {
   mode: 'horizontal',
   menuTheme: 'dark',
+  menuCollapsed: false,
 };
