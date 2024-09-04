@@ -1,10 +1,12 @@
 import React from 'react';
 import { Avatar, Dropdown, MenuProps, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import RemixIcon from '@/components/RemixIcon';
 
 const items: MenuProps['items'] = [
   {
     key: '1',
+    icon: <RemixIcon icon="ri-questionnaire-line" />,
     label: (
       <a
         target="_blank"
@@ -17,6 +19,7 @@ const items: MenuProps['items'] = [
   },
   {
     key: '2',
+    icon: <RemixIcon icon="ri-id-card-line" />,
     label: (
       <a
         target="_blank"
@@ -29,6 +32,7 @@ const items: MenuProps['items'] = [
   },
   {
     key: '3',
+    icon: <RemixIcon icon="ri-logout-circle-line" />,
     label: (
       <a
         target="_blank"

@@ -1,13 +1,14 @@
 import React from 'react';
 import { theme as AntdTheme, Layout } from 'antd';
 import { appTitle } from '@/constants';
+import { isTriggerTheme } from '@/constants/app';
 import { layoutConfig } from '@/constants/layout';
 import { useThemeStore } from '@/store';
 import classnames from 'classnames';
 import Account from '@/components/Account';
 import HeaderSearch from '../HeaderSearch';
-import ModeTrigger from '../ModeTrigger';
 import NoticeMessage from '../NoticeMessage/index';
+import ThemeTrigger from '../ThemeTrigger';
 
 const Header: React.FC = () => {
   const { theme } = useThemeStore();
@@ -35,11 +36,13 @@ const Header: React.FC = () => {
         <span className="h-full cursor-pointer flex justify-center items-center">
           <NoticeMessage />
         </span>
+        {isTriggerTheme ? (
+          <span className="h-full cursor-pointer flex justify-center items-center">
+            <ThemeTrigger />
+          </span>
+        ) : null}
         <span className="h-full cursor-pointer flex justify-center items-center">
           <Account />
-        </span>
-        <span className="h-full cursor-pointer flex justify-center items-center">
-          <ModeTrigger />
         </span>
       </div>
     </Layout.Header>

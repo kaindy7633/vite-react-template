@@ -1,3 +1,10 @@
+/**
+ *
+ * TODO：请注意，该组件即将被废弃，请勿使用. 2024-09-04
+ * TODO: 新的主题切换组件是, ThemeTrigger
+ *
+ *
+ */
 import React from 'react';
 import { Switch, theme } from 'antd';
 import { useThemeStore } from '@/store';

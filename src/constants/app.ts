@@ -13,3 +13,6 @@ export const appThemeMode = theme.defaultAlgorithm;
 // iconfont 应用图标
 export const appIconFontScript =
   '//at.alicdn.com/t/c/font_3701640_pcinl3ll0vr.js';
+
+// 是否展示切换主题的图标
+export const isTriggerTheme = true;

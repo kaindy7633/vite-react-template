@@ -17,7 +17,13 @@ const NoticeMessage: React.FC = () => {
       title="消息列表"
       content={<MessageContent />}
     >
-      <Badge ref={headerMessageRef} count={5} size="small" className="">
+      <Badge
+        ref={headerMessageRef}
+        count={5}
+        overflowCount={99}
+        size="small"
+        className=""
+      >
         <IconFont
           type="icon-notice-message"
           size={19}

@@ -64,3 +64,25 @@ export const useThemeStore = create<{
     )
   )
 );
+
+/**
+ * 用户信息
+ */
+export const useUserStore = create<{
+  userInfo: Record<string, any>;
+  setUserInfo: (_userInfo: Record<string, any>) => void;
+}>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        userInfo: {},
+        setUserInfo: (_userInfo) =>
+          set((state) => ({ userInfo: { ...state.userInfo, ..._userInfo } })),
+      }),
+      {
+        name: 'userInfo-storage', // unique name
+        storage: createJSONStorage(() => sessionStorage),
+      }
+    )
+  )
+);
