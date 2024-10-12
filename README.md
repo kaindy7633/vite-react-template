@@ -34,6 +34,9 @@ pnpm install
 
 ## ChangeLog
 
+- 2024年10月
+  - 创建工具函数文件，新建了 `generateRandomString` 函数，用于生成随机字符串
+
 - 2024年08月
   - 升级 antd 到 5.20.3 版本
   - 升级 pro-component 到 2.7.15 版本
