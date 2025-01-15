@@ -10,20 +10,11 @@ import { appTitle } from '@/constants';
 
 const PageLayout = lazy(() => import('@/layouts/PageLayout'));
 const Home = lazy(() => import('@/pages/Home'));
-const PurchaseOne = lazy(() => import('@/pages/Purchase/One'));
-const PurchaseTwo = lazy(() => import('@/pages/Purchase/Two'));
-const StandardProduct = lazy(() => import('@/pages/Warehouse/StandardProduct'));
-const ReagentConsumables = lazy(
-  () => import('@/pages/Warehouse/ReagentConsumables')
-);
 const UserCenter = lazy(() => import('@/pages/Usercenter'));
 
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
 const Singin = lazy(() => import('@/pages/Auth/Singin'));
 const NotFound = lazy(() => import('@/pages/404'));
-
-// 测试Demo
-const Demo = lazy(() => import('@/pages/Demo'));
 
 /**
  *  返回带有 fallback 效果的组件，配合CSS解决组件切换时页面闪动的问题
@@ -43,46 +34,9 @@ export const routes: Record<string, any>[] = [
         title: '首页',
       },
       {
-        path: '',
-        title: '采购管理',
-        children: [
-          {
-            path: '/purchase/one',
-            element: generateFallbackComponent(<PurchaseOne />),
-            title: '采购管理 - 选项一',
-          },
-          {
-            path: '/purchase/two',
-            element: generateFallbackComponent(<PurchaseTwo />),
-            title: '采购管理 - 选项二',
-          },
-        ],
-      },
-      {
-        path: '',
-        title: '仓库管理',
-        children: [
-          {
-            path: '/warehouse/standard-product',
-            element: generateFallbackComponent(<StandardProduct />),
-            title: '标准品管理',
-          },
-          {
-            path: '/warehouse/reagent-consumables',
-            element: generateFallbackComponent(<ReagentConsumables />),
-            title: '试剂耗材管理',
-          },
-        ],
-      },
-      {
         path: '/usercenter',
         element: generateFallbackComponent(<UserCenter />),
         title: '用户中心',
-      },
-      {
-        path: '/demo',
-        element: generateFallbackComponent(<Demo />),
-        title: 'demo',
       },
       // 未匹配上的路由 404
       {
