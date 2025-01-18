@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ConfigProvider } from 'antd';
-import { Locale } from 'antd/es/locale';
-import zhCN from 'antd/lib/locale/zh_CN';
 import { RouterGurad, routes } from '@/routes';
+// for date-picker i18n
+import 'dayjs/locale/zh-cn';
 import Loading from '@/components/Loading';
-import { useThemeStore } from './store';
+import { useLocaleStore, useThemeStore } from './store';
 
 const App: React.FC = () => {
   // 当前主题设置
   const { theme } = useThemeStore();
-
   // 当前系统语言
-  const [locale] = useState<Locale>(zhCN);
+  const { locale } = useLocaleStore();
 
   return (
     <ConfigProvider locale={locale} theme={theme}>

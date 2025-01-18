@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /**
  * @description 模版采用了Zustand作为状态管理工具，该工具具有体积小、无需模版代码，无需 Provider 等特点
  * 更少的样板代码
@@ -9,78 +11,124 @@
  * 参考文章：https://juejin.cn/post/7134633741774749710
  */
 import { theme as AntdTheme, ThemeConfig } from 'antd';
+import { Locale } from 'antd/es/locale';
+import zhCN from 'antd/lib/locale/zh_CN';
 import { appThemeColor } from '@/constants';
 import { create } from 'zustand';
-import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import {
+  combine, // TODO 该API未使用，后续添加
+  createJSONStorage,
+  devtools,
+  persist,
+} from 'zustand/middleware';
 
-type TokenConfig = {
-  accessToken: string;
-  refreshToken: string;
+type TTokenStoreProps = {
+  token: string;
+  refreshToken?: string;
+  setToken: (_token: string) => void;
+  setRefreshToken: (_refreshToken: string) => void;
 };
 
-export const useTokenStore = create<{
-  token: TokenConfig;
-  setToken: (_token: TokenConfig) => void;
-}>()(
+/**
+ * 定义 token 变量
+ */
+export const useTokenStore = create<TTokenStoreProps>()(
   devtools(
     persist(
-      (set, get) => ({
-        token: {
-          accessToken: '',
-          refreshToken: '',
-        },
-        setToken: (_token) =>
-          set((state) => ({ token: { ...state.token, ..._token } })),
+      (set, _get) => ({
+        token: '',
+        refreshToken: '',
+        setToken: (_token) => set({ token: _token }),
+        setRefreshToken: (_refreshToken) =>
+          set({ refreshToken: _refreshToken }),
       }),
       {
-        name: 'token-storage', // unique name
+        name: 'token-storage',
         storage: createJSONStorage(() => sessionStorage),
       }
     )
   )
 );
 
+type TLocaleStoreProps = {
+  locale: Locale;
+  setLocale: (_locale: Locale) => void;
+};
+
 /**
- * @TODO 定义切换主题变量, 5.x 版本升级后，这里数据结构发生修改
+ * 定义语言设定
  */
-export const useThemeStore = create<{
-  theme: ThemeConfig & Record<string, any>;
-  setTheme: (_theme: ThemeConfig) => void;
-}>()(
+export const useLocaleStore = create<TLocaleStoreProps>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set, _get) => ({
+        locale: zhCN,
+        setLocale: (_locale) => set((_state) => ({ locale: _locale })),
+      }),
+      {
+        name: 'locale-storage',
+        storage: createJSONStorage(() => sessionStorage),
+      }
+    )
+  )
+);
+
+type TThemeStoreProps = {
+  theme: ThemeConfig;
+  setTheme: (_theme: ThemeConfig) => void;
+};
+
+/**
+ *  定义切换主题变量
+ *  默认主题主调色为 `appThemeColor`, 即 `#1890ff`
+ *  默认主题算法为 `AntdTheme.defaultAlgorithm`，可选算法有：
+ *    - `AntdTheme.defaultAlgorithm` 默认算法
+ *    - `AntdTheme.compactAlgorithm` 紧凑算法
+ *    - `AntdTheme.darkAlgorithm` 暗黑算法
+ *  algorithm 可以是一个算法，也可以是一个算法数组, 比如：
+ *    - `AntdTheme.defaultAlgorithm`
+ *    - `[AntdTheme.defaultAlgorithm, AntdTheme.compactAlgorithm]`
+ *  token 可以是一个对象，也可以是一个对象数组, 比如：
+ *    - `{ colorPrimary: appThemeColor }`
+ *    - `[{ colorPrimary: appThemeColor }, { colorPrimary: appThemeColor }]`
+ */
+export const useThemeStore = create<TThemeStoreProps>()(
+  devtools(
+    persist(
+      (set, _get) => ({
         theme: {
           token: { colorPrimary: appThemeColor },
           algorithm: AntdTheme.defaultAlgorithm,
         },
-        setTheme: (_theme) =>
+        setTheme: (_theme: ThemeConfig) =>
           set((state) => ({ theme: { ...state.theme, ..._theme } })),
       }),
       {
-        name: 'food-storage', // unique name
+        name: 'theme-storage',
         storage: createJSONStorage(() => sessionStorage),
       }
     )
   )
 );
 
-/**
- * 用户信息
- */
-export const useUserStore = create<{
+type TUserStoreProps = {
   userInfo: Record<string, any>;
   setUserInfo: (_userInfo: Record<string, any>) => void;
-}>()(
+};
+
+/**
+ * 定义用户信息
+ */
+export const useUserStore = create<TUserStoreProps>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set, _get) => ({
         userInfo: {},
         setUserInfo: (_userInfo) =>
           set((state) => ({ userInfo: { ...state.userInfo, ..._userInfo } })),
       }),
       {
-        name: 'userInfo-storage', // unique name
+        name: 'userInfo-storage',
         storage: createJSONStorage(() => sessionStorage),
       }
     )

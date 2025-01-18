@@ -1,5 +1,10 @@
 # ChangeLog
 
+- 2025年1月
+  - 升级 `Antd` 版本到 `5.23.1`
+  - 修改了 `Zustand` 中 `useTokenStore` 的配置
+  - 在 `Zustand` 中添加了 `useLocaleStore` 的配置, 并修改了 `App.tsx` 文件，添加了 `dayjs` 的 `locale` 配置
+
 - 2024年10月
   - 创建工具函数文件，新建了 `generateRandomString` 函数，用于生成随机字符串
 
