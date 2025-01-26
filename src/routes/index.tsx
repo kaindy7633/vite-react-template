@@ -13,7 +13,7 @@ const Home = lazy(() => import('@/pages/Home'));
 const UserCenter = lazy(() => import('@/pages/Usercenter'));
 
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
-const Singin = lazy(() => import('@/pages/Auth/Singin'));
+const Singin = lazy(() => import('@/pages/Auth'));
 const NotFound = lazy(() => import('@/pages/404'));
 
 /**
@@ -30,7 +30,7 @@ export const routes: Record<string, any>[] = [
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: generateFallbackComponent(<Home />),
         title: '首页',
       },
       {
@@ -49,7 +49,7 @@ export const routes: Record<string, any>[] = [
   // 其他不需要 PageLayout 控制的页面
   {
     path: '/auth',
-    element: <AuthLayout />,
+    element: generateFallbackComponent(<AuthLayout />),
     children: [
       {
         path: '/auth/singin',
